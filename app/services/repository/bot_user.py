@@ -2,17 +2,10 @@ from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.db.bot_user import BotUserModel
-from abc import ABC, abstractmethod
-
 from models.pydantic.bot_user import BotUser
 from .helpers import return_one
-from .crud import BaseCRUDRepository, CRUDRepository
-
-
-class BaseBotUserRepository(BaseCRUDRepository[BotUser], ABC):
-    @abstractmethod
-    async def get_by_telegram_id(self, telegram_id: int) -> BotUser:
-        pass
+from .crud import CRUDRepository
+from .interface.bot_user import BaseBotUserRepository
 
 
 class BotUserRepository(CRUDRepository[BotUser, BotUserModel], BaseBotUserRepository):

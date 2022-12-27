@@ -1,18 +1,12 @@
 import uuid
-from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Callable
 
 from models.pydantic.bot_user import BotUser
-from .base import UoWService
+from .interface.uow_service import UoWService
+from .interface.auth_service import BaseAuthService
 from .unit_of_work import BaseBotUnitOfWork
 from .repository.exceptions.not_found import NotFoundException
-
-
-class BaseAuthService(ABC):
-    @abstractmethod
-    async def auth_telegram_user(self, telegram_id: int) -> BotUser:
-        pass
 
 
 class AuthService(BaseAuthService, UoWService):

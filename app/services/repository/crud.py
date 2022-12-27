@@ -1,5 +1,4 @@
-from typing import TypeVar, Generic, Sequence, List, get_origin, Type
-from abc import ABC, abstractmethod
+from typing import TypeVar, Generic, List, Type
 from uuid import UUID
 
 from sqlalchemy import insert, update, select, delete
@@ -7,37 +6,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.db.id_model import IdModel
 from models.pydantic.id import PydanticIdModel
-from .alchemy import AlchemyRepository
+from services.repository.interface.alchemy import AlchemyRepository
 from .helpers import return_one
+from .interface.crud import DomainModelType, BaseCRUDRepository
 
 DbModelType = TypeVar("DbModelType", bound=IdModel)
-DomainModelType = TypeVar("DomainModelType", bound=PydanticIdModel)
-
-
-class BaseCRUDRepository(Generic[DomainModelType], ABC):
-
-    def __init__(self, domain_type: Type[PydanticIdModel]):
-        self.domain_type = domain_type
-
-    @abstractmethod
-    async def create(self, model: DomainModelType) -> DomainModelType:
-        pass
-
-    @abstractmethod
-    async def update(self, model: DomainModelType):
-        pass
-
-    @abstractmethod
-    async def read(self) -> Sequence[DomainModelType]:
-        pass
-
-    @abstractmethod
-    async def delete(self, model: DomainModelType):
-        pass
-
-    @abstractmethod
-    async def find_by_id(self, id_: UUID) -> DomainModelType:
-        pass
 
 
 class CRUDRepository(Generic[DbModelType, DomainModelType], BaseCRUDRepository[DomainModelType], AlchemyRepository):

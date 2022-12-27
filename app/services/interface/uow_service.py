@@ -1,7 +1,7 @@
 from abc import ABC
 from typing import Callable
 
-from .unit_of_work import BaseBotUnitOfWork
+from services.unit_of_work import BaseBotUnitOfWork
 
 
 class UoWService(ABC):
