@@ -15,7 +15,7 @@ from internationalization import Internationalization
 from internationalization.loaders import YAMLLoader
 from config import Config, WebhookConfig
 
-from bot.handlers.main import register_main_routes
+from bot.controllers.main import MainController
 from blacksheep import Application, FromJSON
 
 
@@ -68,7 +68,12 @@ def main(config: Config):
     for middleware in middlewares:
         root_router.message.outer_middleware.register(middleware)
 
-    register_main_routes(root_router)
+    controllers = [
+        MainController()
+    ]
+
+    for controller in controllers:
+        controller.register(root_router)
 
     dp.include_router(root_router)
 
