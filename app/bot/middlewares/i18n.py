@@ -4,6 +4,7 @@ from aiogram.types import Message
 from internationalization import Internationalization
 from internationalization.exceptions import LanguageNotPresentError
 
+
 class I18nMiddleware(BaseMiddleware):
     async def __call__(
             self,
