@@ -2,7 +2,7 @@ from uuid import UUID
 from pydantic import BaseModel
 
 
-class BaseIdModel(BaseModel):
+class PydanticIdModel(BaseModel):
     id: UUID
 
     class Config:

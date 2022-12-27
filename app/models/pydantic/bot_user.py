@@ -1,7 +1,7 @@
 from datetime import datetime
-from .id import BaseIdModel
+from .id import PydanticIdModel
 
 
-class BotUser(BaseIdModel):
+class BotUser(PydanticIdModel):
     telegram_id: int
     created_at: datetime

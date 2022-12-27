@@ -6,17 +6,17 @@ from sqlalchemy import insert, update, select, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models.db.id_model import IdModel
-from models.pydantic.id import BaseIdModel
+from models.pydantic.id import PydanticIdModel
 from .alchemy import AlchemyRepository
 from .helpers import return_one
 
 DbModelType = TypeVar("DbModelType", bound=IdModel)
-DomainModelType = TypeVar("DomainModelType", bound=BaseIdModel)
+DomainModelType = TypeVar("DomainModelType", bound=PydanticIdModel)
 
 
 class BaseCRUDRepository(Generic[DomainModelType], ABC):
 
-    def __init__(self, domain_type: Type[BaseIdModel]):
+    def __init__(self, domain_type: Type[PydanticIdModel]):
         self.domain_type = domain_type
 
     @abstractmethod
@@ -41,7 +41,7 @@ class BaseCRUDRepository(Generic[DomainModelType], ABC):
 
 
 class CRUDRepository(Generic[DbModelType, DomainModelType], BaseCRUDRepository[DomainModelType], AlchemyRepository):
-    def __init__(self, session: AsyncSession, domain_type: Type[BaseIdModel], db_type: Type[IdModel]):
+    def __init__(self, session: AsyncSession, domain_type: Type[PydanticIdModel], db_type: Type[IdModel]):
         super().__init__(domain_type)
         AlchemyRepository.__init__(self, session)
         self.db_type = db_type
