@@ -1,6 +1,6 @@
 import asyncio
 import sys
- import uvicorn
+import uvicorn
 from aiogram import Bot
 from aiogram import Dispatcher, Router
 from aiogram.types import Update, FSInputFile
