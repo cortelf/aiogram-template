@@ -1,8 +1,10 @@
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.db.bot_user import BotUser, BotUserModel
+from models.db.bot_user import BotUserModel
 from abc import ABC, abstractmethod
+
+from models.pydantic.bot_user import BotUser
 from .helpers import return_one
 from .crud import BaseCRUDRepository, CRUDRepository
 

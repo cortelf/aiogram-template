@@ -5,7 +5,8 @@ from uuid import UUID
 from sqlalchemy import insert, update, select, delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from models.db.id_model import BaseIdModel, IdModel
+from models.db.id_model import IdModel
+from models.pydantic.id import BaseIdModel
 from .alchemy import AlchemyRepository
 from .helpers import return_one
 

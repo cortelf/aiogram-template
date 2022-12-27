@@ -3,9 +3,9 @@ from abc import ABC, abstractmethod
 from datetime import datetime
 from typing import Callable
 
+from models.pydantic.bot_user import BotUser
 from .base import UoWService
 from .unit_of_work import BaseBotUnitOfWork
-from models.db.bot_user import BotUser
 from .repository.exceptions.not_found import NotFoundException
 
 

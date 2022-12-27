@@ -3,7 +3,7 @@ from aiogram.filters import Command
 from aiogram.types import Message
 from internationalization import Language
 
-from models.db import BotUser
+from models.pydantic.bot_user import BotUser
 
 
 async def on_start(message: Message, lang: Language, user: BotUser):

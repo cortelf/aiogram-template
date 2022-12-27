@@ -1,2 +1,2 @@
-from .bot_user import BotUser, BotUserModel
+from .bot_user import BotUserModel
 from .base import Base
